@@ -21,6 +21,8 @@ tweet {your-message}
 
 You have to set up `~/.twitter-env` file to your home directory yourself.
 
+`~/.twitter-env`
+
 ```env
 CONSUMER_TOKEN=.......
 CONSUMER_SECRET=.......
