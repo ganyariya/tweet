@@ -2,7 +2,7 @@ tweet
 
 ---
 
-`tweet` can tweet now your status from CLI easily.
+`tweet` can tweet now your status from CLI easily.  
 `tweet` cat tweet `only`, so you will not be distracted.
 
 # How to Install
