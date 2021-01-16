@@ -5,19 +5,19 @@ tweet
 `tweet` can tweet now your status from CLI easily.  
 `tweet` cat tweet `only`, so you will not be distracted.
 
-# How to Install
+## How to Install
 
 ```
 pip install tweet
 ```
 
-# How to Use
+## How to Use
 
 ```
 tweet {your-message}
 ```
 
-# Setting
+## How to set up
 
 You have to set up `~/.twitter-env` file to your home directory yourself.
 
