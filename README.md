@@ -2,19 +2,26 @@ tweet
 
 ---
 
-`tweet` can tweet now your status from CLI easily.  
-`tweet` cat tweet `only`, so you will not be distracted.
+`tweet` can tweet your current status from CLI easily.
+
+`tweet` cat tweet `only`, therefore you will not be distracted.
 
 ## How to Install
 
+[pipx](https://github.com/pypa/pipx) is good for running python applications in isolated environments.
+
 ```
-pip install tweet
+pipx install tweet
 ```
 
 ## How to Use
 
 ```
-tweet {your-message}
+# Post Tweet
+tweet tweet `your-status`
+
+# Endless Mode
+tweet endless
 ```
 
 ## How to set up
