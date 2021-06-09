@@ -1,4 +1,6 @@
-tweet
+<p align="center">
+  <img width="200" src="static/logo.png">
+</p>
 
 ---
 
