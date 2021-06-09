@@ -14,6 +14,7 @@ python = "^3.9"
 typer = { extras = ["all"], version = "^0.3.2" }
 python-dotenv = "^0.15.0"
 python-twitter = "^3.5"
+rich = "^10.2.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
