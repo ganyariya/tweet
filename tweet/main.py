@@ -1,3 +1,4 @@
+import readline
 from os import stat
 from typing import Final
 from rich.console import Console
