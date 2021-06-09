@@ -29,6 +29,7 @@ tweet endless
 ## How to set up
 
 You have to set up `~/.twitter-env` file to your home directory yourself.
+You get tokens from [Twitter Developer](https://developer.twitter.com/en/portal/projects-and-apps).
 
 `~/.twitter-env`
 
