@@ -39,8 +39,11 @@ def endless() -> None:
         status = console.input(f":bird: < What's happening?  ")
         if len(status) == 0:
             continue
-        api.PostUpdate(status=status)
-        console.print(f":bird: < Tweeted! [bold]“{status}”[/bold]")
+        try:
+            api.PostUpdate(status=status)
+            console.print(f":bird: < Tweeted! [bold]“{status}”[/bold]")
+        except twitter.error.TwitterError as e:
+            console.print(f"[red]{e}[/red]")
 
 
 def init() -> None:
