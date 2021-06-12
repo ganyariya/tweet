@@ -11,12 +11,17 @@ APP_NAME: Final[str] = "tweet"
 
 app: Final[typer.Typer] = typer.Typer()
 console: Final[Console] = Console()
-api: twitter.Api = twitter.Api(
-    consumer_key=settings.CONSUMER_TOKEN,
-    consumer_secret=settings.CONSUMER_SECRET,
-    access_token_key=settings.ACCESS_TOKEN,
-    access_token_secret=settings.ACCESS_SECRET,
-)
+api: twitter.Api
+
+
+def init_api() -> None:
+    global api
+    api = twitter.Api(
+        consumer_key=settings.CONSUMER_TOKEN,
+        consumer_secret=settings.CONSUMER_SECRET,
+        access_token_key=settings.ACCESS_TOKEN,
+        access_token_secret=settings.ACCESS_SECRET,
+    )
 
 
 @app.command()
@@ -31,7 +36,7 @@ def tweet(status: str) -> None:
 
 
 @app.command()
-def endless() -> None:
+def endless(suffix: str = typer.Argument("")) -> None:
     """
     :return: None
     """
@@ -41,23 +46,14 @@ def endless() -> None:
             continue
         try:
             api.PostUpdate(status=status)
-            console.print(f":bird: < Tweeted! [bold]“{status}”[/bold]")
+            console.print(f":bird: < Tweeted! [bold]“{status} {suffix}”[/bold]")
         except twitter.error.TwitterError as e:
             console.print(f"[red]{e}[/red]")
 
 
-def init() -> None:
-    global api
-    api = twitter.Api(
-        consumer_key=settings.CONSUMER_TOKEN,
-        consumer_secret=settings.CONSUMER_SECRET,
-        access_token_key=settings.ACCESS_TOKEN,
-        access_token_secret=settings.ACCESS_SECRET,
-    )
-
-
 if __name__ == "__main__":
     PERIOD: int = 60 * 20
-    signal.signal(signal.SIGALRM, init)
+    signal.signal(signal.SIGALRM, init_api)
     signal.setitimer(signal.ITIMER_REAL, PERIOD, PERIOD)
+    init_api()
     app()
