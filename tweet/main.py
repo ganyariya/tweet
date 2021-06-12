@@ -11,7 +11,12 @@ APP_NAME: Final[str] = "tweet"
 
 app: Final[typer.Typer] = typer.Typer()
 console: Final[Console] = Console()
-api: twitter.Api
+api: twitter.Api = twitter.Api(
+    consumer_key=settings.CONSUMER_TOKEN,
+    consumer_secret=settings.CONSUMER_SECRET,
+    access_token_key=settings.ACCESS_TOKEN,
+    access_token_secret=settings.ACCESS_SECRET,
+)
 
 
 def init_api() -> None:
@@ -55,5 +60,4 @@ if __name__ == "__main__":
     PERIOD: int = 60 * 20
     signal.signal(signal.SIGALRM, init_api)
     signal.setitimer(signal.ITIMER_REAL, PERIOD, PERIOD)
-    init_api()
     app()
