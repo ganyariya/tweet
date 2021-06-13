@@ -1,3 +1,4 @@
+import os
 import readline
 import signal
 from typing import Final
@@ -29,6 +30,11 @@ def init_api() -> None:
     )
 
 
+def goodbye(*args, **kwargs) -> None:
+    console.print("\n:bird: < [bold]Bye![/bold]")
+    exit()
+
+
 @app.command()
 def tweet(status: str) -> None:
     """Tweet
@@ -51,7 +57,7 @@ def endless(suffix: str = typer.Argument("")) -> None:
             continue
         try:
             api.PostUpdate(status=status)
-            console.print(f":bird: < Tweeted! [bold]“{status} {suffix}”[/bold]")
+            console.print(f":bird: < Tweeted! [bold]“{status} {suffix}”[/bold]\n")
         except twitter.error.TwitterError as e:
             console.print(f"[red]{e}[/red]")
 
@@ -59,5 +65,6 @@ def endless(suffix: str = typer.Argument("")) -> None:
 if __name__ == "__main__":
     PERIOD: int = 60 * 20
     signal.signal(signal.SIGALRM, init_api)
+    signal.signal(signal.SIGINT, goodbye)
     signal.setitimer(signal.ITIMER_REAL, PERIOD, PERIOD)
     app()
