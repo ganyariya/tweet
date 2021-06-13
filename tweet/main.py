@@ -67,5 +67,6 @@ if __name__ == "__main__":
     signal.signal(signal.SIGALRM, init_api)
     signal.signal(signal.SIGINT, goodbye)
     signal.signal(signal.SIGTERM, goodbye)
+    signal.signal(signal.SIGHUP, goodbye)
     signal.setitimer(signal.ITIMER_REAL, PERIOD, PERIOD)
     app()
