@@ -10,7 +10,7 @@ from rich.console import Console
 
 APP_NAME: Final[str] = "tweet"
 
-app: Final[typer.Typer] = typer.Typer()
+app: Final[typer.Typer] = typer.Typer(help="Tweet Only.")
 console: Final[Console] = Console()
 api: twitter.Api = twitter.Api(
     consumer_key=settings.CONSUMER_TOKEN,
@@ -32,24 +32,22 @@ def init_api() -> None:
 
 def goodbye(*args, **kwargs) -> None:
     console.print("\n:bird: < [bold]Bye![/bold]")
-    exit(0)
+    raise typer.Exit()
 
 
 @app.command()
 def tweet(status: str) -> None:
-    """Tweet
-
-    :param status: str
-    :return: None
+    """
+    Tweet your status.
     """
     print(status)
     api.PostUpdate(status=status)
 
 
 @app.command()
-def endless(suffix: str = typer.Argument("")) -> None:
+def endless(suffix: str = typer.Argument("", help="Suffix for your status")) -> None:
     """
-    :return: None
+    Endless tweet mode.
     """
     while True:
         status = console.input(f":bird: < What's happening?  ")
