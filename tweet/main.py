@@ -54,7 +54,7 @@ def endless(suffix: str = typer.Argument("", help="Suffix for your status")) -> 
         if len(status) == 0:
             continue
         try:
-            api.PostUpdate(status=status)
+            api.PostUpdate(status=f"{status} {suffix}")
             console.print(f":bird: < Tweeted! [bold]“{status} {suffix}”[/bold]\n")
         except twitter.error.TwitterError as e:
             console.print(f"[red]{e}[/red]")
@@ -65,5 +65,6 @@ if __name__ == "__main__":
     signal.signal(signal.SIGALRM, init_api)
     signal.signal(signal.SIGINT, goodbye)
     signal.signal(signal.SIGTERM, goodbye)
+    signal.signal(signal.SIGHUP, goodbye)
     signal.setitimer(signal.ITIMER_REAL, PERIOD, PERIOD)
     app()
