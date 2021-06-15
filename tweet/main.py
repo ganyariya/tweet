@@ -32,7 +32,7 @@ def init_api() -> None:
 
 def goodbye(*args, **kwargs) -> None:
     console.print("\n:bird: < [bold]Bye![/bold]")
-    exit()
+    exit(0)
 
 
 @app.command()
@@ -56,7 +56,7 @@ def endless(suffix: str = typer.Argument("")) -> None:
         if len(status) == 0:
             continue
         try:
-            api.PostUpdate(status=status)
+            api.PostUpdate(status=f"{status} {suffix}")
             console.print(f":bird: < Tweeted! [bold]“{status} {suffix}”[/bold]\n")
         except twitter.error.TwitterError as e:
             console.print(f"[red]{e}[/red]")

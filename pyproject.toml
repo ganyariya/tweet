@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "tweet"
-version = "1.3.2"
+version = "1.3.3"
 description = "Tweet Only Library"
 authors = ["ganariya <ganariya2525@gmail.com>"]
 readme = "README.md"
